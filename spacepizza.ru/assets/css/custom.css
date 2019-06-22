@@ -1,0 +1,269 @@
+.h-100 {
+	height: 100%;
+}
+.d-center {
+	display: flex;
+	justify-content: center; 
+	align-items: center;
+}
+.d-between {
+	display: flex;
+	justify-content: space-between; 
+}
+.d-flex {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+.d-column {
+	flex-direction: column;
+}
+.wrap_menu {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	height: 70%;
+}
+
+.wrap_menu {
+	justify-content: center;
+}
+
+#nav ul li, #nav ul li:first-child {
+	border-top: none;
+	border-bottom: none;
+	position: relative;
+}
+
+#nav ul li::before {
+	content: "";
+	position: absolute;
+	width: 100%;
+	height: 1px;
+	background-color: rgba(255, 255, 255, .4);
+	left: 0;
+	bottom: -1rem;
+}
+
+.icons .icon img {
+	position: absolute;
+	max-width: 25px;
+	width: 100%;
+	left: 0;
+	right: 0;
+	margin: auto;
+}
+
+#nav ul li:last-child::before {
+	background-color: transparent;
+}
+
+ul.icons a{
+	height: 25px;
+}
+#header .icons a{
+	position: relative;
+}
+
+.icons--icon__hide{
+	opacity: 0;
+	transition: opacity .3s ease-out!important;
+}
+a.icon:hover .icons--icon__hide{
+	opacity: 1;
+}
+
+#slider .container {
+	width: 100%;
+	padding: 0;
+}
+
+.slider .owl-stage-outer .owl-item div{
+	max-height: 235px;
+	overflow: hidden;
+}
+
+#pizza h2, #combo h2, #salad h2, #snack h2 {padding-top: 55px;}
+
+#nav ul li a{
+	transition: 0.3s;
+	width: auto;
+	padding: 0;
+}
+
+#nav {
+	padding-bottom: 35px;
+}
+
+#about {
+	padding-left: 1em!important;
+}
+#about .container {
+	margin-left: 0;
+}
+.container {margin: auto;}
+
+.mob__menu {
+	width: 50px;
+	height: 50px;
+	border-radius: 5px;
+	border: 3px solid rgba(255, 255, 255, .7);
+	position: absolute;
+	z-index: 999999;
+	cursor: pointer;
+	margin: 30px;
+	display: none;
+	transition: .3s;
+}
+.mob__menu::before {
+	content: "";
+	position: absolute;
+	left: 0;
+	right: 0;
+	background-color: #ffffff;
+	margin: auto;
+	width: 75%;
+	height: 3px;
+	opacity: .5;
+	top: 30%;
+}
+.mob__menu::after {
+	content: "";
+	position: absolute;
+	left: 0;
+	right: 0;
+	background-color: #ffffff;
+	margin: auto;
+	width: 75%;
+	height: 3px;
+	opacity: .5;
+	bottom: 30%;
+}
+
+.close__menu{
+	position: absolute;
+	top: 10px;
+	right: 0px;
+	width: 50px;
+	height: 50px;
+	z-index: 10;
+	display: none;
+}
+
+.close__menu::before {
+	content: "";
+	position: absolute;
+	top: 24px;
+    right: 10px;
+	width: 25px;
+	height: 2px;
+	background-color: #ffffff;
+	transform: rotate(45deg);
+	z-index: 1;
+}
+
+.close__menu::after {
+	content: "";
+	position: absolute;
+	top: 24px;
+    right: 10px;
+	width: 25px;
+	height: 2px;
+	background-color: #ffffff;
+	transform: rotate(-45deg);
+	z-index: 1;
+}
+@media screen and (min-width: 961px) and (max-width: 1400px) {
+	
+	.owl-carousel .owl-item img {
+		max-height: 150px;
+	}
+}
+
+@media screen and (min-width: 961px) and (max-width: 1200px) {
+	#footer {
+		width: calc(100% - 275px);
+		margin-left: auto!important;
+	}
+}
+
+@media screen and (min-width: 300px) and (max-width: 960px) {
+	
+	.mob__menu, .close__menu {
+		display: block;
+	}
+
+	#header {
+		display: flex;
+		flex-direction: column;
+	}
+
+	#header .bottom {
+		margin-top: 0;
+	}
+
+	#header .top {
+		display: flex;
+    	flex-direction: column;
+	}
+
+	.wrap_menu {
+		height: 100%;
+	}
+
+	#main > section {
+		padding: 1em 0;
+	}
+
+	#logo-mobile {
+		float: none;
+		max-width: 310px;
+		margin: auto;
+	}
+
+	.top-menu {
+		margin-top: 10px;
+	}
+
+	.one.fixed {
+		position: fixed;
+		width: 100%;
+		left: 0;
+		top: 0;
+	}
+
+	.mob__menu.fixed {
+		position: fixed;
+		left: 0;
+		top: 0;
+	}
+}
+
+.wrap__form {
+	width: 100%;
+    margin: 0 auto;
+    padding: 50px;
+    position: fixed;
+    top: -25000px;
+    background: #11124c url(/smartbasket/img/overlay.png);
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: start;
+    -ms-flex-align: start;
+    align-items: flex-start;
+    overflow-y: scroll;
+    transition: .8s;
+}
+
+.wrap__form--active{
+	transition: .8s;
+    top: 0;
+    -webkit-animation: a ease-in-out .8s;
+    animation: a ease-in-out .8s;
+    opacity: 1;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 9999;
+}

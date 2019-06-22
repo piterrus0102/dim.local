@@ -102,15 +102,5 @@ $('.product__size-element').on('click', function(e){
 	$(this).addClass('product__size-element_active');
 	var cost__value = $(this).attr('data-sb-curent-price');
 	$(this).closest('.card').find('.product__price-number').html(cost__value);
+	console.log(cost__value);
 });
-
-
-$('.buy').on("click", function(e){
-	e.preventDefault();
-	var r = $(this).closest('.card').children('.product__size-element_active');
-	var m = r.attr('data-sb-curent-price');
-	var g = r.attr("data-sb-curent-size");
-	console.log(r);
-	$(this).attr('data-sb-product-size', g);
-	$(this).attr('data-sb-product-price', m);
-})

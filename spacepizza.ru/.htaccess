@@ -1,4 +1,0 @@
-# BROWER CACHING - 1 Month for images
-<filesMatch ".(webp|css|jpg|jpeg|png|js|php)$">
-Header set Cache-Control "max-age=2592000, public"
-</filesMatch>

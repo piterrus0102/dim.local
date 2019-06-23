@@ -1,5 +1,5 @@
 <?php 
-
+/*
 require_once('phpmailer/PHPMailerAutoload.php');
 $mail = new PHPMailer;
 $mail->CharSet = 'utf-8';
@@ -36,4 +36,5 @@ if(!$mail->send()) {
 } else {
     header('location: thank-you.html');
 }
+*/
 ?>

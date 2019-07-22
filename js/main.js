@@ -1,14 +1,12 @@
-/*$(document).ready(function(){
+$(document).ready(function(){
 	
 	$("#nav").on("click","a", function (event) {
 		event.preventDefault();
 		var id  = $(this).attr('href'),
 		top = $(id).offset().top;
 		$('body,html').animate({scrollTop: top}, 900);
-
-
-		$('#header').css('transform', 'translateX(-275px)');
-		$('.mob__menu').css('opacity', '1');
+		// $('#header').css('transform', 'translateX(-275px)');
+		// $('.mob__menu').css('opacity', '1');
 	});
 
 	$(".smart-basket__min").on("click", function (event) {
@@ -86,8 +84,6 @@
 	
 });
 
-*/
-
 $('.smart-basket__min').on('click', function (e) {
     e.preventDefault();
     $('.wrap__form').addClass('wrap__form--active');
@@ -103,7 +99,7 @@ $('.smart-basket__min').on('click', function (e) {
     });
 
     $('.smart-basket__price-common').text('Общая стоимость: ' + quantity__cost + '.00 ₽');
-    console.log(quantity__cost);
+    // console.log(quantity__cost);
 });
 
 
@@ -165,6 +161,7 @@ function addToCart(thisCart) {
     var productCost = thisCart.children('.buy').attr('data-sb-product-price');
     var productItems = thisCart.children('.buy').attr('data-sb-product-quantity');
     var productQuantity = productCost * productItems;
+    var basket__item = $('.smart-basket__product-item:last');
 
     $('.smart-basket__product-item:last').after('<div class="smart-basket__product-item"></div>');
     $('.smart-basket__product-item:last').append('<div class="smart-basket__product-name"><img src="' + productImg + '" width="60"><span>' + productName + '<span class="smart-basket__product-size"> Размер: ' + productSize + ' </span></span></div>');
@@ -176,36 +173,11 @@ function addToCart(thisCart) {
     $('.smart-basket__product-item:last').append('<button class="smart-basket__product-delete" data-sb-product-delete="001"><span class="smart-basket__delete-icon">×</span></button>');
 }
 
-$('.smart-basket__form').on('click', '.smart-basket__product-delete', function (e) {
-    e.preventDefault();
-
-    var item__val = $(this).closest('.smart-basket__form').find('.smart-basket__product-quantity .smart-basket__product-quantity-state').attr('value');
-
-    var item__cost = $(this).closest('.smart-basket__form').find('.smart-basket__product-price-common .smart-basket__input').attr('value');
-
-    var items__all = $(this).closest('.smart-basket__form').find('.smart-basket__result-common .smart-basket__quantity-common').text();
-
-    var cost__quantity = $(this).closest('.smart-basket__form').find('.smart-basket__result-common .smart-basket__price-common').text();
-
-
-    items__all = items__all.replace(/[^0-9]/g, '');
-    cost__quantity = cost__quantity.replace(/[^0-9.]/g, '');
-    cost__quantity = (0 + (+cost__quantity));
-
-    //items__all -= items__all - item__val;
-    console.log('Колличество предметов: ' + items__all);
-    $(this).closest('.smart-basket__form').find('.smart-basket__result-common .smart-basket__quantity-common').text('Всего товаров: ' + items__all);
-    items__all = 0;
-    //console.log(typeof cost__quantity);
-    //console.log(cost__quantity);
-    $(this).parents('.smart-basket__product-item').remove();
-})
-
 $('.smart-basket__form').on('click', '.smart-basket__add-item', function (e) {
     e.preventDefault();
     var tmp_cost = 0;
     var txt = $(this).siblings('.smart-basket__product-quantity-state').attr('value');
-    var items_cost = $(this).closest('.smart-basket__product-item').find('.smart-basket__product-price .smart-basket__input').attr('value');  //косяк
+    var items_cost = $(this).closest('.smart-basket__product-item').find('.smart-basket__product-price .smart-basket__input').attr('value');
     $(this).siblings('.smart-basket__product-quantity-state').attr('value', 1 + (+txt));
     var items__val = $(this).siblings('.smart-basket__product-quantity-state').attr('value');
     tmp_cost = items_cost * items__val;
@@ -219,7 +191,7 @@ $('.smart-basket__form').on('click', '.smart-basket__add-item', function (e) {
     $('.smart-basket__form .smart-basket__product-price-common .smart-basket__input').each(function () {
         all_cost += parseFloat(this.value);
 //		console.log(all_cost);
-    })
+    });
     $('.smart-basket__price-common').text('Общая стоимость: ' + all_cost + '.00 ₽');
 });
 
@@ -244,6 +216,68 @@ $('.smart-basket__form').on('click', '.smart-basket__remove-item', function (e) 
     $('.smart-basket__form .smart-basket__product-price-common .smart-basket__input').each(function () {
         all_cost += parseFloat(this.value);
 //		console.log(all_cost);
-    })
+    });
     $('.smart-basket__price-common').text('Общая стоимость: ' + all_cost + '.00 ₽');
+});
+
+function items__all__cost(old__cost, items__cost__new){
+    console.log('общая стоимость' + old__cost);
+    console.log('стоимость товара' + items__cost__new);
+}
+
+$('.smart-basket__form').on('click', '.smart-basket__product-delete', function (event) {
+    event.preventDefault();
+
+
+
+
+
+    console.log('Запуск smart-basket__form');
+
+    let n_cost;
+
+    // Общая стоимость
+    let cost__quantity = $(this).closest('.smart-basket__form').find('.smart-basket__result-common .smart-basket__price-common').text();
+    console.log('итоговая сумма: ' + cost__quantity);
+
+    // Колличество предметов
+    let item__val = $(this).closest('.smart-basket__product-item').find('.smart-basket__product-quantity .smart-basket__product-quantity-state').attr('value');
+    console.log('кол-во данной позиции: ' + item__val);
+
+    //стоимость единцы товара
+    let item__cost = $(this).closest('.smart-basket__product-item').find('.smart-basket__product-price-common .smart-basket__input').attr('value');
+    console.log('сумма товаров данной позиции: ' + item__cost);
+
+    //Колличество предметов
+    let items__all = $(this).closest('.smart-basket__form').find('.smart-basket__result-common .smart-basket__quantity-common').text();
+    console.log('всего в корзине товаров: ' + items__all);
+
+    items__all = items__all.replace(/[^0-9]/g, '');
+    cost__quantity = cost__quantity.replace(/[^0-9.]/g, '');
+    cost__quantity = (0 + (+cost__quantity));
+    n_cost = cost__quantity;
+
+    items__all -= item__val;
+    $(this).closest('.smart-basket__form').find('.smart-basket__result-common .smart-basket__quantity-common').text('Всего товаров: ' + items__all);
+    items__all = 0;
+
+
+    cost__quantity -= item__cost;
+    $(this).closest('.smart-basket__form').find('.smart-basket__result-common .smart-basket__price-common').text('Общая стоимость: ' + cost__quantity);
+
+
+    // console.log('last cost == ' + new__cost);
+    $(this).parents('.smart-basket__product-item').remove();
+});
+
+$('.smart-basket__send-form').submit(function (e) {
+    e.preventDefault();
+    var data = $('form').serializeArray();
+    $.ajax({
+        type: "POST",
+        url: 'mail.php',
+        data: data,
+        success: success,
+        dataType: dataType
+    });
 });

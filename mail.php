@@ -1,11 +1,16 @@
 <?php 
-/*
+
 require_once('phpmailer/PHPMailerAutoload.php');
 $mail = new PHPMailer;
 $mail->CharSet = 'utf-8';
 
-$name = $_POST['name'];
-$phone = $_POST['phone'];
+$street = $_POST['userStr'];
+$home = $_POST['userHou'];
+$numKv = $_POST['userApa'];
+$commit = $_POST['userCom'];
+$commit = $_POST['userCom'];
+$name = $_POST['userName'];
+$phone = $_POST['userTel'];
 
 //$mail->SMTPDebug = 3;                               // Enable verbose debug output
 
@@ -36,5 +41,5 @@ if(!$mail->send()) {
 } else {
     header('location: thank-you.html');
 }
-*/
+
 ?>
